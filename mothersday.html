@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mother's Day Letter & Poem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #ffeef1, #fff5f8);
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .column {
+      flex: 1 1 500px;
+      max-width: 600px;
+      margin: 20px;
+      padding: 30px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8em;
+      color: #e87ea5;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .typewriter-text {
+      white-space: pre-wrap;
+      font-size: 1.05em;
+      color: #4a4a4a;
+      min-height: 400px;
+    }
+
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 10s infinite ease-in;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+      }
+    }
+
+    .gift-button {
+      display: block;
+      background-color: #e87ea5;
+      color: white;
+      font-size: 1.2em;
+      padding: 10px 30px;
+      margin: 30px auto;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .gift-button:hover {
+      background-color: #d66e91;
+    }
+
+    /* Bonus Poem Pop-up Styling */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      max-width: 80%;
+      width: 400px;
+      text-align: center;
+    }
+
+    .popup .popup-text {
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .popup .close-btn {
+      display: inline-block;
+      background-color: #e87ea5;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .popup .close-btn:hover {
+      background-color: #d66e91;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="hearts"></div>
+
+  <div class="container">
+    <div class="column">
+      <div class="title">Happy Mother’s Day</div>
+      <div class="typewriter-text" id="letter"></div>
+      <button class="gift-button" id="giftButton">Gift Poem</button>
+    </div>
+    <div class="column">
+      <div class="title">To the Woman Who Loved Me First</div>
+      <div class="typewriter-text" id="poem"></div>
+    </div>
+  </div>
+
+  <!-- Popup for Bonus Poem -->
+  <div class="popup" id="popup">
+    <div class="popup-text" id="bonusPoemText"></div>
+    <button class="close-btn" id="closeBtn">Close</button>
+  </div>
+
+  <script>
+    const letterText = `to my first protector, my first best friend, the woman whose strength raised me, whose kindness shaped me, and whose love continues to hold me even on the days I feel lost. There aren’t enough words in this world to describe how much you mean to me. You are, and always have been, my greatest example of resilience and grace. Life hasn’t been gentle with you. I’ve seen the weight you’ve had to carry, the long days, the heavy nights, the sacrifices that were never spoken aloud, and yet, through it all, you’ve remained soft. Not weak—never weak—but soft, in a way that only the strongest souls know how to be.
+
+Your heart is the most beautiful thing I’ve ever known. So full of love, even when yours was breaking. So ready to forgive, even when life didn’t apologize. You’ve taught me that kindness doesn’t mean naivety, that being strong doesn’t mean never crying, and that loving others fiercely is never a weakness, it’s a power. I’ve always admired you. Not just for what you’ve done, but for who you are. The way you love so quietly, so completely. The way you give without ever expecting anything in return. The way you make a house feel like home, even when the world outside feels unkind.
+
+You’ve always been my safe place. When I was little, your arms were my shelter. Now that I’m growing older, I realize you’ve been my shelter in more ways than I can count. In every word of advice, in every meal made, in every long hug, in every time you stayed strong so we wouldn’t have to worry. You’ve always been there. Even when you were tired. Even when you were hurting. And I want you to know, I see it. I see you. I see all the moments you chose love over anger, strength over bitterness, and patience over despair. And I want to be even half the woman you are one day. Because if I am, I’ll consider that a life well-lived.
+
+Thank you for being my mama.
+Thank you for being my everything.
+I hope today reminds you of just how deeply you are loved,
+not just for what you’ve done, but for who you are.
+You deserve the world, and more.
+
+With all my love,
+Zoe`;
+
+    const poemText = `You were my first home, my softest place,  
+A quiet strength, a heart full of grace.  
+Before I could walk, before I could speak,  
+You were the voice that lifted the weak.  
+The world was loud, but you were calm,  
+A steady hand, a healing balm.  
+You held me close when nights felt long,  
+And taught me how the hurt makes us strong.  
+
+I’ve seen you cry behind closed doors,  
+Still giving love when you had no more.  
+Yet somehow, you smiled and held on tight,  
+Still making sure we had the light.  
+You are courage in its gentlest form,  
+A heart that weathers every storm.  
+You gave me more than words can show,  
+More than you ever let me know.  
+
+You loved in silence, loved so wide,  
+With every sleepless, selfless stride.  
+And even now, your love remains,  
+In every joy, in all my pains.  
+If I become half the soul you are,  
+I’ll know I’ve traveled just as far.  
+For you, dear Mama, are rare and true,  
+And all the good in me came from you.  
+So here’s my heart, laid bare and true,  
+No poem could hold what I owe you.  
+But I hope this gift can softly say:  
+I love you more each single day.`;
+
+    const bonusPoemText = `Bonus Poem Surprise!  
+You’ve given more than I could ever say,  
+In every whisper, in every way.  
+Through every smile, through every tear,  
+Your love has been the constant here.  
+
+And now, my mama, on this special day,  
+I thank you more than words can say.  
+For every sacrifice, for every hug,  
+For every moment, so full of love.  
+
+You are my heart, my guiding light,  
+My reason to smile, my reason to fight.  
+So here’s a bonus, just for you,  
+A love so deep, a love so true.`;
+
+    function typeWriter(text, elementId, speed = 25) {
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          document.getElementById(elementId).innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typing, speed);
+        }
+      }
+      typing();
+    }
+
+    typeWriter(letterText, "letter", 25);
+    setTimeout(() => typeWriter(poemText, "poem", 25), letterText.length * 25 + 1000);
+
+    // Event listener for gift button
+    document.getElementById("giftButton").addEventListener("click", function() {
+      const popup = document.getElementById("popup");
+      const bonusPoem = document.getElementById("bonusPoemText");
+      bonusPoem.innerHTML = bonusPoemText;
+      popup.style.display = 'block';
+    });
+
+    // Event listener for close button
+    document.getElementById("closeBtn").addEventListener("click", function() {
+      const popup = document.getElementById("popup");
+      popup.style.display = 'none';
+    });
+
+    // Function to create floating hearts
+    function createFloatingHearts() {
+      const heartCount = 30;
+      const heartsContainer = document.getElementById("hearts");
+
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        heartsContainer.appendChild(heart);
+      }
+    }
+
+    createFloatingHearts();
+  </script>
+</body>
+</html>
